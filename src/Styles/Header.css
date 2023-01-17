@@ -1,0 +1,89 @@
+.header-container{
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+    background-color: #04a2ca;
+}
+.headaer{
+    width: 100%;
+    height: 100%;
+    
+}
+.h-top{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    height: 70px;
+}
+.h-logo{
+    width: 100px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+}
+.h-logo img{
+    width: 100px;
+    height: 50px;
+}
+
+.h-search{
+    width: 50%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+
+}
+.h-search input[type="search"]{
+    background-image: url("../icons/search.svg");
+    background-repeat: no-repeat;
+    background-position: left;
+    padding-left:30px ;
+    width: 100%;
+    height: 40px;
+    border: 0;
+    outline: none;
+    font-size: 20px;
+}
+.h-search input[type="search"]:focus{
+    border-bottom: 4px solid rgb(0, 195, 255);
+}
+
+.h-options{
+    width: 10%;
+    height: 70px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.h-login a, .h-cart a {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+}
+.h-login a:hover, .h-cart a:hover {
+    color: gold;
+    text-decoration: underline;
+}
+
+
+.h-down{
+    /* background-color: rgb(4, 124, 236); */
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.h-down a{
+    margin: 0px 10px;
+    color: white;
+    text-decoration: none;
+}
+.h-down a:hover{
+    color: gold;
+}
