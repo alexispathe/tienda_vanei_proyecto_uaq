@@ -6,6 +6,7 @@ const productContext = React.createContext();
 const productToggleContext = React.createContext();
 const deleteProductContext = React.createContext();
 const totalPriceContext = React.createContext();
+const btnTotalPriceContext = React.createContext();
 
 // Esta funcion almacena los poductos añadidos al carrito
 export function useProductContext() {
@@ -19,7 +20,9 @@ export function useProductToggleContext() {
 export function useDeleteProductContext() {
     return useContext(deleteProductContext)
 }
-
+export function useBntTotalPriceContext() {
+    return useContext(btnTotalPriceContext)
+}
 export function useTotalPriceContext() {
     return useContext(totalPriceContext);
 }
@@ -31,23 +34,24 @@ export const ProductsProvider = ({ children }) => {
     const [product, setProducts] = useState([]);
     const [total, setTotal] = useState(0);
     const onProduct = (value) => {
-        // console.log(value)
+        // console.log(product)
         setProducts([...product, value])
-        onTotalPrice();
+        // onTotalPrice(product);
         // console.log("Productos", product)
     }
     // Creamos la funcion que hara para borrar un el ID del producto
     const onDeleteProduct = (id) => {
         setProducts(product.filter(product => product.id !== id))
-        onTotalPrice();
+        // onTotalPrice(product.filter(product => product.id !== id));
     }
     // FIN
     const onTotalPrice = () => {
         let x = 0;
         product.map(data => {
             x += data.price
-            setTotal(x)
         });
+        setTotal(x)
+
     }
 
     return (
@@ -55,7 +59,10 @@ export const ProductsProvider = ({ children }) => {
             <productToggleContext.Provider value={onProduct}>
                 <deleteProductContext.Provider value={onDeleteProduct}>
                     <totalPriceContext.Provider value={total}>
-                        {children}
+                        <btnTotalPriceContext.Provider value={onTotalPrice}>
+                            {children}
+
+                        </btnTotalPriceContext.Provider>
 
                     </totalPriceContext.Provider>
                 </deleteProductContext.Provider>

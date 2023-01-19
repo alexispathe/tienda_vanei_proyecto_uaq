@@ -1,33 +1,22 @@
-import { useEffect, useState } from "react";
-import { useProductContext,useDeleteProductContext , useTotalPriceContext} from "../../context/ProductsProvider";
-import { ProductsDB } from "../../database/ProductsDB";
-import {MdDeleteForever} from 'react-icons/md';
+import { useEffect} from "react";
+import { useProductContext, useDeleteProductContext, useTotalPriceContext, useBntTotalPriceContext } from "../../context/ProductsProvider";
+import { MdDeleteForever } from 'react-icons/md';
+import { Link } from "react-router-dom";
 import '../../Styles/ShoppingCart.css';
 
 export const ShoppingCart = () => {
     const products = useProductContext();
     const onDeleteProduct = useDeleteProductContext();
+    const onBtnTotalPrice = useBntTotalPriceContext();
     const total = useTotalPriceContext();
-    
-    const [items, setItems] = useState([]);
 
-    
-    const getTotalPrice = async (data) => {
-        // let x = 0;
-        // data.map(data=>{
-        //     x+= data.price
-        //     setTotal(x)
-        // });
-        
-
-    }
-    // useEffect(() => {
-    //     console.log(products)
-    // }, []);
+    useEffect(() => {
+        onBtnTotalPrice();
+    }, [onDeleteProduct]);
     return (
         <>
             <div className="">
-                <div className="items-container  ">
+                {total > 0 ? <div className="items-container  ">
                     <h1 className="text-center">Carrito de compras</h1>
                     {
                         products.map((product, i) => (
@@ -38,15 +27,27 @@ export const ShoppingCart = () => {
                                 </div>
 
                                 <div className="item-count ">1</div>
-                                <div className="item-price ">${product.price} MXN  <MdDeleteForever onClick={()=>onDeleteProduct(product.id)} style={{"color": "red"}}/></div>
+                                <div className="item-price ">${product.price} MXN  <MdDeleteForever onClick={() => onDeleteProduct(product.id)} style={{ "color": "red" }} /></div>
                             </div>
                         ))
 
                     }
                     <div className="total-container">
-                        <p className="total"> Total ${total} MXN</p>
+                        <div className="total">
+                            <div>
+                                <span className=""> Total ${total} MXN</span>
+                            </div>
+                            <div>
+                                <Link className="btn btn-success">Comprar</Link>
+                            </div>
+                        </div>
+
                     </div>
-                </div>
+                </div> : 
+                <div className="alert alert-danger text-center">No has agregado ningun producto</div>
+
+                }
+
             </div>
         </>
     )
