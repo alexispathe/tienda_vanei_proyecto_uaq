@@ -21,10 +21,7 @@ export const ProductsContainer = () => {
                 {products && products.length >=1 ?
                     products.map((product, i) => (
                         <Product
-                            title={product.title}
-                            image={product.image}
-                            price={product.price}
-                            id={product}
+                            product={product}
                             key={product.id}
                             
                         />
