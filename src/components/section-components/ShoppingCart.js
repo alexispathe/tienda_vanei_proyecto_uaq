@@ -1,37 +1,51 @@
 import { useEffect, useState } from "react";
-import { useProductContext } from "../../context/ProductsProvider";
+import { useProductContext,useDeleteProductContext , useTotalPriceContext} from "../../context/ProductsProvider";
 import { ProductsDB } from "../../database/ProductsDB";
+import {MdDeleteForever} from 'react-icons/md';
+import '../../Styles/ShoppingCart.css';
 
 export const ShoppingCart = () => {
     const products = useProductContext();
+    const onDeleteProduct = useDeleteProductContext();
+    const total = useTotalPriceContext();
+    
     const [items, setItems] = useState([]);
-    const getProducts = () => {
-        const id = [2, 3, 6];
-        const data = [];
-        products.map((id) => {
-            console.log(ProductsDB.filter(product => product.id === id))
-            // setItems(...items, ProductsDB.filter(product => product.id === data));
-            data.push(...ProductsDB.filter(product => product.id === id));
 
-        })
-        setItems(data)
+    
+    const getTotalPrice = async (data) => {
+        // let x = 0;
+        // data.map(data=>{
+        //     x+= data.price
+        //     setTotal(x)
+        // });
+        
 
     }
-    useEffect(() => {
-        getProducts();
-    }, []);
+    // useEffect(() => {
+    //     console.log(products)
+    // }, []);
     return (
         <>
-            <div className="container">
-                <h1>Carrito de compras</h1>
-                <div className="items-container">
-                    {items.map((product, i) => (
-                        <div className="item">
-                            <div className="item-title">{product.title}</div>
-                            <div className="item-count">1</div>
-                            <div className="item-price">{product.price}</div>
-                        </div>
-                    ))}
+            <div className="">
+                <div className="items-container  ">
+                    <h1 className="text-center">Carrito de compras</h1>
+                    {
+                        products.map((product, i) => (
+                            <div className="item" key={i}>
+                                <div className="item-info">
+                                    <div className="item-image"><img src={product.image} alt="" /></div>
+                                    <div className="item-title ">{product.title}</div>
+                                </div>
+
+                                <div className="item-count ">1</div>
+                                <div className="item-price ">${product.price} MXN  <MdDeleteForever onClick={()=>onDeleteProduct(product.id)} style={{"color": "red"}}/></div>
+                            </div>
+                        ))
+
+                    }
+                    <div className="total-container">
+                        <p className="total"> Total ${total} MXN</p>
+                    </div>
                 </div>
             </div>
         </>

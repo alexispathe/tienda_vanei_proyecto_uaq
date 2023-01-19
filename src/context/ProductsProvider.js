@@ -1,27 +1,64 @@
 // useContext nos permite acceder a la informacion que se encuentra en el contexto de nuestra aplicacion
 
-import React, { useState,useContext } from "react";
+import React, { useState, useContext } from "react";
+
 const productContext = React.createContext();
 const productToggleContext = React.createContext();
+const deleteProductContext = React.createContext();
+const totalPriceContext = React.createContext();
 
-export function useProductContext(){
+// Esta funcion almacena los poductos añadidos al carrito
+export function useProductContext() {
     return useContext(productContext);
 };
-export function useProductToggleContext(){
+// Esta funcion es para el boton onProduct 
+export function useProductToggleContext() {
     return useContext(productToggleContext);
-};  
+};
+// Borrar un elemento que se encuentre en el contexto
+export function useDeleteProductContext() {
+    return useContext(deleteProductContext)
+}
 
-export const ProductsProvider = ({children}) => {
-    const [product, setProducts] = useState([])
+export function useTotalPriceContext() {
+    return useContext(totalPriceContext);
+}
+
+
+
+
+export const ProductsProvider = ({ children }) => {
+    const [product, setProducts] = useState([]);
+    const [total, setTotal] = useState(0);
     const onProduct = (value) => {
         // console.log(value)
         setProducts([...product, value])
-        console.log("Productos", product)
+        onTotalPrice();
+        // console.log("Productos", product)
     }
+    // Creamos la funcion que hara para borrar un el ID del producto
+    const onDeleteProduct = (id) => {
+        setProducts(product.filter(product => product.id !== id))
+        onTotalPrice();
+    }
+    // FIN
+    const onTotalPrice = () => {
+        let x = 0;
+        product.map(data => {
+            x += data.price
+            setTotal(x)
+        });
+    }
+
     return (
         <productContext.Provider value={product}>
             <productToggleContext.Provider value={onProduct}>
-                {children}
+                <deleteProductContext.Provider value={onDeleteProduct}>
+                    <totalPriceContext.Provider value={total}>
+                        {children}
+
+                    </totalPriceContext.Provider>
+                </deleteProductContext.Provider>
             </productToggleContext.Provider>
         </productContext.Provider>
     );
