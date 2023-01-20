@@ -7,7 +7,7 @@ const productToggleContext = React.createContext();
 const deleteProductContext = React.createContext();
 const totalPriceContext = React.createContext();
 const btnTotalPriceContext = React.createContext();
-
+const btnDeleteProductsCart = React.createContext();
 // Esta funcion almacena los poductos añadidos al carrito
 export function useProductContext() {
     return useContext(productContext);
@@ -26,41 +26,58 @@ export function useBntTotalPriceContext() {
 export function useTotalPriceContext() {
     return useContext(totalPriceContext);
 }
-
+// FUNCION PARA BORRAR LOS PRODUCTOS DEL CARRITO DE COMRPAS UNA VEZ REALIZADO LA COMPRA
+export function useDeleteProduct() {
+    return useContext(btnDeleteProductsCart)
+}
 
 
 
 export const ProductsProvider = ({ children }) => {
-    const [product, setProducts] = useState([]);
+    const [products, setProducts] = useState([]);
     const [total, setTotal] = useState(0);
+
     const onProduct = (value) => {
         // console.log(product)
-        setProducts([...product, value])
+        value.id = value.id + new Date().getMilliseconds();
+        value.productID = value.title.toLowerCase().replace(/ /g,'-') +"-"+ new Date().getMilliseconds();
+        console.log("Asi se manda los datos ", value)
+        console.log("Productos del carrito antes de agregar value ", products)
+
+        setProducts([...products, value])
+        console.log("Productos del carrito despues de agregar value ", products)
         // onTotalPrice(product);
         // console.log("Productos", product)
     }
     // Creamos la funcion que hara para borrar un el ID del producto
     const onDeleteProduct = (id) => {
-        setProducts(product.filter(product => product.id !== id))
+        console.log(products)
+        // setProducts(product.filter(product => product.productID !== id))
         // onTotalPrice(product.filter(product => product.id !== id));
     }
     // FIN
+    // SACAR EL TOTAL DE LOS PRODUCTOS
     const onTotalPrice = () => {
         let x = 0;
-        product.map(data => {
+        products.map(data => {
             x += data.price
         });
         setTotal(x)
 
     }
-
+    // BOTON PARA BORRAR LOS PRODUCTOS CUANDO SE HACE LA COMPRA
+    const onDeleteProducts = () => {
+        setProducts([]);
+    }
     return (
-        <productContext.Provider value={product}>
+        <productContext.Provider value={products}>
             <productToggleContext.Provider value={onProduct}>
                 <deleteProductContext.Provider value={onDeleteProduct}>
                     <totalPriceContext.Provider value={total}>
                         <btnTotalPriceContext.Provider value={onTotalPrice}>
-                            {children}
+                            <btnDeleteProductsCart.Provider value={onDeleteProducts}>
+                                {children}
+                            </btnDeleteProductsCart.Provider>
 
                         </btnTotalPriceContext.Provider>
 

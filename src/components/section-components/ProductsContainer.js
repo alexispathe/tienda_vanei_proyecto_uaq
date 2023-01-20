@@ -4,22 +4,22 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 export const ProductsContainer = () => {
-    const [products, setProducts] = useState([]);
+    const [productsDB, setProductsDB] = useState([]);
     let {id} =  useParams();
     useEffect(()=>{
         if(id){
             const data = ProductsDB.filter(products => products.category === id)
-            setProducts(data)
+            setProductsDB(data)
         }else{
-            setProducts(ProductsDB);
+            setProductsDB(ProductsDB);
         }
        
     },[id]);
     return (
         <>
             <div className="d-flex w-100 flex-wrap justify-content-center ">
-                {products && products.length >=1 ?
-                    products.map((product, i) => (
+                {productsDB && productsDB.length >=1 ?
+                    productsDB.map((product, i) => (
                         <Product
                             product={product}
                             key={product.id}

@@ -1,14 +1,16 @@
-import { useEffect} from "react";
+import { useEffect, useState } from "react";
 import { useProductContext, useDeleteProductContext, useTotalPriceContext, useBntTotalPriceContext } from "../../context/ProductsProvider";
 import { MdDeleteForever } from 'react-icons/md';
-import { Link } from "react-router-dom";
+import { Buy } from "./Buy";
 import '../../Styles/ShoppingCart.css';
+import { Link } from "react-router-dom";
 
 export const ShoppingCart = () => {
     const products = useProductContext();
     const onDeleteProduct = useDeleteProductContext();
     const onBtnTotalPrice = useBntTotalPriceContext();
     const total = useTotalPriceContext();
+    const [status,setStatus] = useState(false);
 
     useEffect(() => {
         onBtnTotalPrice();
@@ -16,7 +18,7 @@ export const ShoppingCart = () => {
     return (
         <>
             <div className="">
-                {total > 0 ? <div className="items-container  ">
+                {total && total > 0 ? <div className="items-container  ">
                     <h1 className="text-center">Carrito de compras</h1>
                     {
                         products.map((product, i) => (
@@ -27,26 +29,18 @@ export const ShoppingCart = () => {
                                 </div>
 
                                 <div className="item-count ">1</div>
-                                <div className="item-price ">${product.price} MXN  <MdDeleteForever onClick={() => onDeleteProduct(product.id)} style={{ "color": "red" }} /></div>
+                                <div className="item-price ">${product.price} MXN  <MdDeleteForever onClick={() => onDeleteProduct(product.productID)} style={{ "color": "red" }} /></div>
                             </div>
                         ))
 
                     }
-                    <div className="total-container">
-                        <div className="total">
-                            <div>
-                                <span className=""> Total ${total} MXN</span>
-                            </div>
-                            <div>
-                                <Link className="btn btn-success">Comprar</Link>
-                            </div>
-                        </div>
-
-                    </div>
-                </div> : 
-                <div className="alert alert-danger text-center">No has agregado ningun producto</div>
-
+                    <Buy setStatus={setStatus}/>
+                </div> :''
                 }
+                {total <=0 && status === false ? <div className="alert alert-danger text-center">No has agregado ningun producto</div> :''}
+                {/* MENSAJE CUANDO SE COMPRE UN PRODUCTO */}
+                {status? <div className='alert alert-success text-center'>Compra realizada correctamente <Link to="/perfil">Ver mis pedidos</Link></div>: ''}
+                {/* FIN */}
 
             </div>
         </>

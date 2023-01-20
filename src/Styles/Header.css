@@ -17,7 +17,7 @@
     height: 70px;
 }
 .h-logo{
-    width: 100px;
+    min-width: 100px;
     height: 70px;
     display: flex;
     align-items: center;
@@ -28,7 +28,7 @@
 }
 
 .h-search{
-    width: 50%;
+    min-width: 600px;
     height: 70px;
     display: flex;
     align-items: center;
@@ -50,7 +50,7 @@
 }
 
 .h-options{
-    width: 10%;
+    min-width: 150px;
     height: 70px;
     display: flex;
     flex-wrap: wrap;
@@ -68,7 +68,13 @@
     color: gold;
     text-decoration: underline;
 }
-
+.h-login-container{
+    min-width: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    color: white;
+    justify-content: space-around;
+}
 
 .h-down{
     /* background-color: rgb(4, 124, 236); */
@@ -86,4 +92,18 @@
 }
 .h-down a:hover{
     color: gold;
+}
+
+@media (max-width: 900px){
+    .h-search{
+        min-width: 300px;
+    }
+}
+@media (max-width: 550px){
+    .h-search{
+        min-width: 100px;
+    }
+    .h-options{
+        min-width: 100px;
+    }
 }

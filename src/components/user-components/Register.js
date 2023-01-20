@@ -1,11 +1,17 @@
 import { AiOutlineMail } from 'react-icons/ai';
 import { RiLockPasswordLine } from 'react-icons/ri';
 import {AiOutlineUser} from 'react-icons/ai';
-import {Link} from 'react-router-dom';
-import { useState } from 'react';
+import {Link,useNavigate} from 'react-router-dom';
+import { useState,useEffect } from 'react';
 export const Register =()=>{
+    const navigate = useNavigate();
     const [data, setData] = useState({});
     const [status, setStatus] = useState(false);
+    useEffect(() => {
+        if (localStorage.getItem('login') === "true") {
+            navigate('/perfil')
+        } 
+    }, []);
     const onHandleChange =(e)=>{
         setData({
             ...data,

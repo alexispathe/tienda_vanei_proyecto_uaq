@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { AiOutlineMail } from 'react-icons/ai';
 import { RiLockPasswordLine } from 'react-icons/ri';
 import { Link,useNavigate } from 'react-router-dom';
@@ -6,6 +6,12 @@ const Login = () => {
     const [data, setData] = useState({});
     const [status, setStatus] = useState(false);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (localStorage.getItem('login') === "true") {
+            navigate('/perfil')
+        } 
+    }, []);
     const onChange =(e)=>{   
         setData({
             ...data,
@@ -14,15 +20,21 @@ const Login = () => {
     };
     const onSubmit =(e)=>{
         e.preventDefault();
-        const userDB = JSON.parse(localStorage.getItem('user'));
-        console.log(userDB)
-        if(userDB.email=== data.email && userDB.password === data.password){
-            e.target.email.value="";
-            e.target.password.value ="";
-            navigate('/perfil');
+        if(localStorage.getItem('user')){
+            const userDB = JSON.parse(localStorage.getItem('user'));
+            // console.log(userDB)
+            if(userDB.email=== data.email && userDB.password === data.password){
+                e.target.email.value="";
+                e.target.password.value ="";
+                localStorage.setItem('login', true);
+                navigate('/perfil');
+            }else{
+                setStatus(true)
+            }
         }else{
             setStatus(true)
         }
+        
     }
     return (
         <>
