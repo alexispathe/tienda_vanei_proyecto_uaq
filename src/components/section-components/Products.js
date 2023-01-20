@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+
 import { BsCartPlus } from 'react-icons/bs';
 import { TfiPackage } from 'react-icons/tfi';
 import '../../Styles/Product.css';

@@ -39,20 +39,17 @@ export const ProductsProvider = ({ children }) => {
 
     const onProduct = (value) => {
         // console.log(product)
-        value.id = value.id + new Date().getMilliseconds();
         value.productID = value.title.toLowerCase().replace(/ /g,'-') +"-"+ new Date().getMilliseconds();
-        console.log("Asi se manda los datos ", value)
-        console.log("Productos del carrito antes de agregar value ", products)
-
+        
         setProducts([...products, value])
-        console.log("Productos del carrito despues de agregar value ", products)
         // onTotalPrice(product);
         // console.log("Productos", product)
     }
     // Creamos la funcion que hara para borrar un el ID del producto
     const onDeleteProduct = (id) => {
-        console.log(products)
-        // setProducts(product.filter(product => product.productID !== id))
+        // console.log(products)
+        setProducts(products.filter(product => product.productID !== id))
+        
         // onTotalPrice(product.filter(product => product.id !== id));
     }
     // FIN
