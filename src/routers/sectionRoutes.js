@@ -23,5 +23,9 @@ export const Section =[
     {
         element: <AcercaDe/>,
         path: '/acerca_de_nosotros'
+    },
+    {
+        element: <Home/>,
+        path: '/tienda_vanei_proyecto_uaq/'
     }
 ];
