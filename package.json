@@ -1,7 +1,7 @@
 {
   "name": "vanei",
   "version": "0.1.0",
-  "homepage": "http://github.com/alexispathe/tienda_vanei.git",
+  "homepage": "http:/alexispathe.github.io/tienda_vanei_proyecto_uaq",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
