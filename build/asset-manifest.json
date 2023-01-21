@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/alexispathe/tienda_vanei.git/build/static/css/main.a76b91b2.css",
+    "main.js": "/alexispathe/tienda_vanei.git/build/static/js/main.a7578b3f.js",
+    "static/js/787.7ffcb084.chunk.js": "/alexispathe/tienda_vanei.git/build/static/js/787.7ffcb084.chunk.js",
+    "static/media/logo_vanei_2.png": "/alexispathe/tienda_vanei.git/build/static/media/logo_vanei_2.ba4233d6a6ee511b6744.png",
+    "index.html": "/alexispathe/tienda_vanei.git/build/index.html",
+    "static/media/search.svg": "/alexispathe/tienda_vanei.git/build/static/media/search.aa58904ba67757220d24.svg",
+    "main.a76b91b2.css.map": "/alexispathe/tienda_vanei.git/build/static/css/main.a76b91b2.css.map",
+    "main.a7578b3f.js.map": "/alexispathe/tienda_vanei.git/build/static/js/main.a7578b3f.js.map",
+    "787.7ffcb084.chunk.js.map": "/alexispathe/tienda_vanei.git/build/static/js/787.7ffcb084.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a76b91b2.css",
+    "static/js/main.a7578b3f.js"
+  ]
+}
