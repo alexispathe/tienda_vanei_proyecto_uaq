@@ -5,6 +5,7 @@ import {BiLogOut} from 'react-icons/bi';
 import { useProductContext } from '../../context/ProductsProvider';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import logo  from '../../images/logo_vanei_2.png';
 const Header = () => {
     const quantityProducts = useProductContext();
     const navigate = useNavigate();
@@ -29,7 +30,7 @@ const Header = () => {
                     <div className="h-top">
                         <div className="h-logo">
                             <Link to="/">
-                                <img src="https://w7.pngwing.com/pngs/35/851/png-transparent-graffiti-illustration-text-sticker-graphic-design-alexis-ren-text-logo-sticker.png" alt="logo VANEI" />
+                                <img src={logo} alt="logo VANEI" />
                             </Link>
                         </div>
                         <div className="h-search">
@@ -53,6 +54,7 @@ const Header = () => {
                         <div className='h-section'><Link to="/articulos/figuras">Figuras</Link></div>
                         <div className='h-section'><Link to="/articulos/gorras">Gorras</Link></div>
                         <div className='h-section'><Link to="/articulos/playeras">Playeras</Link></div>
+                        <div className='h-section'><Link to="/acerca_de_nosotros">Acerca de nosotros</Link></div>
                     </div>
                 </div>
             </div>

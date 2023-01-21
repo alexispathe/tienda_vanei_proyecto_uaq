@@ -53,7 +53,7 @@ export const ShoppingCart = () => {
                                 </div>
 
                                 <div className="item-count ">{product.items}</div>
-                                <div className="item-price ">${product.price} MXN  <MdDeleteForever onClick={() => onDeleteProduct(product.productID)} style={{ "color": "red" }} /></div>
+                                <div className="item-price ">${product.price} C/U <MdDeleteForever onClick={() => onDeleteProduct(product.productID)} style={{ "color": "red" }} /></div>
                             </div>
                         ))
 

@@ -65,4 +65,26 @@ export const ProductsDB =[
         anime: "dragon-ball"
 
     },
+    {
+        id: 7,
+        title: 'Llavero de Pokenon',
+        description: 'Este es un llavero ',
+        price: 29,
+        units: 4,
+        image: 'https://http2.mlstatic.com/D_NQ_NP_987262-MLM43402767405_092020-O.jpg',
+        category: "accesorios",
+        anime: "dragon-ball"
+
+    },
+    {
+        id: 8,
+        title: 'Pikachu Figura',
+        description: 'Las figuras contienen todo esto...... ssas ',
+        price: 699,
+        units: 4,
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjj3t4sZ_hk1XuX8xZdQpDFU81DS9CqEhVFxPDe0QjlDTSMLld-GRWmRgIvZn8Oa3hy-Y&usqp=CAU',
+        category: "figuras",
+        anime: "dragon-ball"
+
+    },
 ]
