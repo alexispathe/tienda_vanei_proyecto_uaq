@@ -12,7 +12,7 @@ const Header = () => {
     const [statusUser, setStatusUser] = useState(false);
     const logout =()=>{
         localStorage.removeItem('login');
-        window.location.href="/";
+        window.location.href="/tienda_vanei_proyecto_uaq/";
     }
     useEffect(() => {
         if (localStorage.getItem('login') === "true") {
