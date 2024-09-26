@@ -6,27 +6,28 @@ import Header from './components/utils/Header';
 import { Section } from './routers/sectionRoutes';
 import { UserRoutes } from './routers/userRoutes';
 import { Error } from './components/utils/Error';
-import React, { useState } from 'react';
+import React from 'react';
 import { ProductsProvider } from './context/ProductsProvider';
-function App() {
+import { FirebaseProvider } from './context/FirebaseContext'; // Asegúrate de ajustar la ruta
 
+function App() {
   return (
-    <>
-      <ProductsProvider>
+    <ProductsProvider>
+      <FirebaseProvider>
         <BrowserRouter>
           <Header />
           <Routes>
-            {Section.map((route, i) => (<Route element={route.element} path={route.path} key={i} />))}
-            {UserRoutes.map((route, i) => (<Route element={route.element} path={route.path} key={i} />))}
+            {Section.map((route, i) => (
+              <Route element={route.element} path={route.path} key={i} />
+            ))}
+            {UserRoutes.map((route, i) => (
+              <Route element={route.element} path={route.path} key={i} />
+            ))}
             <Route path='*' element={<Error />} />
           </Routes>
         </BrowserRouter>
-      </ProductsProvider>
-
-
-    </>
-
-
+      </FirebaseProvider>
+    </ProductsProvider>
   );
 }
 
