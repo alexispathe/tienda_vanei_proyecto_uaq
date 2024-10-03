@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useProductContext, useTotalPriceContext, useDeleteProduct } from '../../context/ProductsProvider';
-import { getFirestore, collection, query, where, getDocs, updateDoc } from 'firebase/firestore';
+import { getFirestore, collection, query, where, getDocs, updateDoc, addDoc } from 'firebase/firestore'; // Añadido addDoc para crear transacciones
 
 export const Buy = ({ setStatus }) => {
     const total = useTotalPriceContext();
@@ -25,6 +25,7 @@ export const Buy = ({ setStatus }) => {
             if (!querySnapshot.empty) {
                 const cardDoc = querySnapshot.docs[0]; // Obtener el primer documento encontrado
                 const cardData = cardDoc.data();
+                const cardId = cardData.cardId; // Obtener cardId del documento
 
                 // Verifica el CVV
                 if (cardData.cvv !== cvv) {
@@ -43,6 +44,25 @@ export const Buy = ({ setStatus }) => {
 
                 // Actualiza el saldo en Firestore
                 await updateDoc(cardDoc.ref, { balance: newBalance }); // Usa cardDoc.ref para actualizar
+
+                // Genera un transaction_id basado en la fecha y hora actual
+                const transactionId = `transaction_${Date.now()}`;
+
+                // Crea un objeto para la transacción
+                const transactionData = {
+                    amount: total,
+                    description: `Compra de ${products.length} artículos en la tienda VANEI`,
+                    status: "pagado",
+                    transaction_type: "compra",
+                    category: "anime",
+                    transaction_id: transactionId,
+                    transaction_date: new Date(), // Fecha actual
+                    card_id: cardId // El card_id obtenido del documento de la tarjeta
+                };
+
+                // Guarda la transacción en la colección 'transactions'
+                const transactionsRef = collection(db, 'transactions');
+                await addDoc(transactionsRef, transactionData);
 
                 // Lógica de compra existente
                 setStatus(true);
