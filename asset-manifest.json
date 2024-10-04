@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/tienda_vanei_proyecto_uaq/static/css/main.39fd132f.css",
-    "main.js": "/tienda_vanei_proyecto_uaq/static/js/main.cd50d568.js",
+    "main.js": "/tienda_vanei_proyecto_uaq/static/js/main.8f6a8546.js",
     "static/js/787.7ffcb084.chunk.js": "/tienda_vanei_proyecto_uaq/static/js/787.7ffcb084.chunk.js",
     "static/media/logo_vanei_2.png": "/tienda_vanei_proyecto_uaq/static/media/logo_vanei_2.ba4233d6a6ee511b6744.png",
     "index.html": "/tienda_vanei_proyecto_uaq/index.html",
     "static/media/search.svg": "/tienda_vanei_proyecto_uaq/static/media/search.aa58904ba67757220d24.svg",
     "main.39fd132f.css.map": "/tienda_vanei_proyecto_uaq/static/css/main.39fd132f.css.map",
-    "main.cd50d568.js.map": "/tienda_vanei_proyecto_uaq/static/js/main.cd50d568.js.map",
+    "main.8f6a8546.js.map": "/tienda_vanei_proyecto_uaq/static/js/main.8f6a8546.js.map",
     "787.7ffcb084.chunk.js.map": "/tienda_vanei_proyecto_uaq/static/js/787.7ffcb084.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.39fd132f.css",
-    "static/js/main.cd50d568.js"
+    "static/js/main.8f6a8546.js"
   ]
 }
